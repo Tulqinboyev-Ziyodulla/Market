@@ -19,6 +19,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonIcon from '@mui/icons-material/Person';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { NavLink, Outlet } from 'react-router-dom';
+import LogOut from '@/components/logOut/LogOut'; 
 
 const LINKS = [
   { title: 'Customer', path: '/', icon: <PersonIcon /> },
@@ -97,9 +98,11 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [openLogOutModal, setOpenLogOutModal] = React.useState(false); 
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
+  const handleLogOutClick = () => setOpenLogOutModal(true); 
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -152,12 +155,22 @@ export default function MiniDrawer() {
               </ListItem>
             </NavLink>
           ))}
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleLogOutClick}>
+              <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log Out" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Outlet />
       </Box>
+
+      <LogOut open={openLogOutModal} onClose={() => setOpenLogOutModal(false)} />
     </Box>
   );
 }
