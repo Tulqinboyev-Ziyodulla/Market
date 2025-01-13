@@ -27,7 +27,7 @@ const Customer: FC = () => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Customer
         </Typography>
-        <Button onClick={() => setOpen('customer')}>Create</Button>
+        <Button variant="contained" color="primary" onClick={() => setOpen('customer')}>Create</Button>
       </Box>
 
       <Table data={data?.data?.innerData || []} />

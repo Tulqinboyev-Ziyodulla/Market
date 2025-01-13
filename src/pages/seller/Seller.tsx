@@ -26,7 +26,7 @@ const Seller = () => {
         <Typography id='modal-modal-title' variant='h6' component='h2'>
           Seller
         </Typography>
-        <Button onClick={() => setOpen('seller')}>Create</Button>
+        <Button variant="contained" color="primary" onClick={() => setOpen('seller')}>Create</Button>
       </Box>
       <Table data={data?.data?.innerData} />
       <CreateCS open={open} close={() => setOpen(null)} />
